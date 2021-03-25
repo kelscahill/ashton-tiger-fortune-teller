@@ -1,0 +1,17 @@
+/* ------------------------------------ *\
+    $MIXINS
+\* ------------------------------------ */
+
+/**
+ * Standard paragraph
+ */
+@mixin p {
+  line-height: 1.5;
+  font-family: $font-primary;
+  font-size: $body-font-size;
+
+  @media print {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+}

@@ -1,0 +1,97 @@
+html {
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+}
+
+body {
+  background-color: $c-purple--dark;
+  color: $c-black;
+  font-family: $font-primary;
+  font-size: $body-font-size;
+
+  @include media(">small", "height>small") {
+    background-color: $c-purple--light;
+  }
+}
+
+a {
+  cursor: pointer;
+}
+
+.l-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  @include media(">small", "height>small") {
+    padding: $space;
+    height: 100vh;
+    background: url("../assets/background.png") center center no-repeat;
+    background-size: 1360px auto;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      background-color: $c-purple--light;
+      overflow: hidden;
+      pointer-events: none;
+    }
+  }
+}
+
+.l-main {
+  text-align: center;
+  position: relative;
+
+  @include media("height<=small") {
+    width: 100%;
+  }
+
+
+  @include media(">small", "height>small") {
+    border-radius: 55px;
+    border: 15px solid $c-black;
+
+    &--inner {
+      width: 100%;
+      height: calc(100vh - #{$space-quad});
+      max-width: $device-width;
+      max-height: $device-height;
+      background-color: $c-black;
+      border-radius: 40px;
+      overflow-y: auto;
+
+      /* width */
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background-color: $c-purple--light;
+        box-shadow: inset 0 0 5px transparent;
+        border-radius: 10px;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: $c-orange;
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: $c-orange;
+      }
+    }
+  }
+}

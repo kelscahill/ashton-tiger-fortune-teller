@@ -1,0 +1,76 @@
+@mixin o-button($bg-color: $c-orange, $color: $c-purple--light, $bg-color-hover: darken($c-orange, 5%), $color-hover: $c-purple--light) {
+  @include o-heading--m;
+
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  background-color: $bg-color;
+  color: $color;
+  padding: 0 $space-double;
+  transition: $transition-all;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50px;
+  white-space: nowrap;
+
+  &.is-active {
+    color: $color-hover;
+    background-color: $bg-color-hover;
+  }
+
+  @include media('>small') {
+    &:hover {
+      color: $color-hover;
+      background-color: $bg-color-hover;
+    }
+  }
+}
+
+@mixin o-button--primary {
+  @include o-button($c-orange, $c-purple--dark, darken($c-orange, 5%), $c-purple--dark);
+}
+
+@mixin o-button--secondary {
+  @include o-button(transparent, $c-purple--light, $c-orange, $c-purple--light);
+
+  border: 1px solid $c-purple--light;
+
+  &.is-active {
+    border-color: $c-orange;
+  }
+
+  @include media('>small') {
+    &:hover {
+      border-color: $c-orange;
+    }
+  }
+}
+
+@mixin o-button--tertiary {
+  @include o-button($c-purple--light, $c-purple--dark, $c-purple--light, $c-purple--dark);
+
+  border: 1px solid $c-purple--dark;
+}
+
+.o-button {
+  @include o-button;
+
+  &--primary {
+    @include o-button--primary;
+  }
+
+  &--secondary {
+    @include o-button--secondary;
+  }
+
+  &--tertiary {
+    @include o-button--tertiary;
+  }
+}
+

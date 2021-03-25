@@ -1,0 +1,64 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+/*
+ * Primary Headings
+*/
+
+@mixin o-heading--xl {
+  font-family: $font-primary;
+  font-size: $font-size-xl;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1.1;
+}
+
+.o-heading--xl {
+  @include o-heading--xl;
+}
+
+@mixin o-heading--l {
+  font-family: $font-primary;
+  font-size: $font-size-l;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1.2;
+}
+
+.o-heading--l {
+  @include o-heading--l;
+}
+
+@mixin o-heading--m {
+  font-family: $font-primary;
+  font-size: $font-size-m;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1.2;
+}
+
+.o-heading--m {
+  @include o-heading--m;
+}
+
+@mixin o-heading--s {
+  font-family: $font-primary;
+  font-size: $font-size-s;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1.4;
+}
+
+.o-heading--s {
+  @include o-heading--s;
+}
