@@ -29,7 +29,7 @@
     align-items: flex-start;
     justify-content: space-between;
     text-align: left;
-    padding: $space $space $space-double $space;
+    padding: $space-double $space;
     flex: 1;
 
     &-heading h2 {
@@ -47,7 +47,7 @@
     justify-content: space-between;
     align-items: center;
     flex-basis: 50vh;
-    padding: $space-double $space;
+    padding: $space;
 
     @include media("height>device-height") {
       flex-basis: calc((#{$device-height} - #{$space-double}) / 2);
@@ -65,10 +65,49 @@
   }
 
   &__gif {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 2;
+    }
+
+    &::before {
+      width: 50px;
+      height: 50px;
+      background: url('../assets/star-small.png') center center no-repeat;
+      background-size: 50px 50px;
+      bottom: -10px;
+      left: -5px;
+      opacity: 0;
+      -webkit-animation: scaleIn 1s $transition-effect forwards;
+      animation: scaleIn 1s $transition-effect forwards;
+      animation-delay: 0.25s;
+    }
+
+    &::after {
+      width: 80px;
+      height: 80px;
+      background: url('../assets/star-large.png') center center no-repeat;
+      background-size: 80px 80px;
+      top: -39px;
+      right: -10px;
+      opacity: 0;
+      -webkit-animation: scaleIn 1s $transition-effect forwards;
+      animation: scaleIn 1s $transition-effect forwards;
+    }
+
     img {
+      z-index: 1;
       width: 100%;
       height: auto;
       max-width: $xsmall;
+      overflow: hidden;
+      border-radius: 30px;
+      border: 2px solid white;
 
       @include media("<=xsmall") {
         max-width: 290px;
@@ -84,22 +123,46 @@
  */
 .c-panel--home {
   .c-panel__hero {
-    justify-content: flex-end;
+    background: $c-purple--dark url('../assets/texture-dark.png') center center repeat;
   }
 
   .c-panel__content {
-    background-color: $c-purple--light;
+    background: $c-purple--light url('../assets/texture-light.png') center center repeat;
+    background-size: 150px 150px;
     padding: $space;
+    flex-basis: 40vh;
 
     &-body {
       display: flex;
       flex: 1;
       align-items: center;
+      padding-left: $space;
+      padding-right: $space;
+    }
+
+    h1 {
+      text-align: center;
+      width: 100%;
+
+      span {
+        display: block;
+        width: 100%;
+        font-size: 110%;
+      }
+
+      span:last-child {
+        font-family: $font-secondary;
+        font-weight: normal;
+        margin-top: 5px;
+        font-size: 100%;
+      }
     }
   }
 
-  .u-underline span {
-    color: $c-black;
+  .o-branding {
+    &__text {
+      fill: $c-purple;
+    }
   }
 }
 
@@ -109,74 +172,75 @@
 .c-panel--resolutions {
   background-color: $c-purple--dark;
 
+  &.is-active {
+    .c-panel__hero::before {
+      background: url('../assets/burst-choose-wisely-active.png') bottom center no-repeat;
+      background-size: 200px 118px;
+    }
+  }
+
+  &.is-revised {
+    .c-panel__hero::before {
+      display: none;
+    }
+  }
+
   .c-panel__hero {
     padding: 0;
     display: flex;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 
     &-heading {
-      padding: $space $space 0 $space;
       flex: 1;
       display: flex;
       align-items: flex-start;
       justify-content: center;
       flex-direction: column;
+      padding: $space-double $space 108px $space;
+    }
 
-      @include media(">small", "height>small") {
-        padding: $space-double $space $space $space;
-      }
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: url('../assets/burst-choose-wisely.png') bottom center no-repeat;
+      background-size: 200px 118px;
+      -webkit-animation: opacitySlideInUp 1s $transition-effect forwards;
+      animation: opacitySlideInUp 1s $transition-effect forwards;
+      animation-delay: 1.25s;
     }
   }
 
   .c-panel__content {
     background-color: $c-purple;
+    position: relative;
+    z-index: 2;
   }
 
-  .o-habit {
+  .o-statement-value {
     font-family: $font-secondary;
     font-weight: 500;
-
-    span {
-      @include animate__fade-in-up;
-
-      margin-right: 8px;
-    }
-
-    span::before {
-      top: 4px;
-      background-size: 100% 8px;
-      -webkit-animation: scaleInHorLeft 0.5s $transition-effect both;
-      animation: scaleInHorLeft 0.5s $transition-effect both;
-
-      @include media(">small", "height>small") {
-        top: 6px;
-        background-size: 100% 10px;
-      }
-    }
-
-    span:last-child {
-      margin-right: 0;
-    }
-
-    span:last-child::after {
-      content: ".";
-      font-family: georgia, serif;
-      width: 0;
-      position: relative;
-      left: 0;
-      overflow: visible;
-    }
-
-    &::before {
-      display: none;
-    }
+    color: $c-orange;
+    opacity: 0;
   }
-}
 
-@for $i from 1 to 10 {
-  .c-panel--resolutions .o-habit span:nth-child(#{$i}) {
-    &::after,
-    &::before {
-      animation-delay: $i * 0.25s + 0.5s;
+  &.is-revised {
+    .c-panel__hero-heading {
+      padding: $space-double $space;
+    }
+
+    .c-panel__content {
+      background-color: $c-purple--dark;
     }
   }
 }
@@ -190,19 +254,43 @@
   .c-panel__hero {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-bottom: $space-double;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    padding-bottom: 108px;
 
     h2 {
-      font-family: $font-secondary;
-      font-weight: 500;
-      color: $c-orange;
       text-align: center;
+
+      span {
+        display: block;
+        width: 100%;
+      }
+
+      span:last-child {
+        font-family: $font-secondary;
+        color: $c-orange;
+        margin-top: 5px;
+      }
     }
 
-    img {
-      max-width: 80px;
-      margin-top: $space;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      background-size: 200px 118px;
+      -webkit-animation: changeImage 1s $transition-effect infinite alternate;
+      animation: changeImage 1s $transition-effect infinite alternate;
     }
   }
 
@@ -210,6 +298,13 @@
     flex: 1;
     display: flex;
     align-items: center;
+    padding: 0 $space-double $space $space-double;
+  }
+
+  .o-branding {
+    &__text {
+      fill: $c-purple;
+    }
   }
 }
 
@@ -245,18 +340,21 @@
   padding: $space;
 
   &__logo {
-    width: 50%;
-    max-width: 150px;
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &__body {
     padding-top: $space-double;
 
-    div {
-
+    span {
       line-height: 1.2;
       font-family: $font-secondary;
       font-weight: 500;
+      color: $c-orange;
     }
   }
 
@@ -288,37 +386,15 @@
     box-shadow: none;
 
     &__logo {
-      width: 200px;
-      max-width: 200px;
-      height: 89px;
+      width: 150px;
+      max-width: 150px;
+      height: 150px;
       display: block;
     }
 
     &__body {
-      font-size: 35px;
+      font-size: 22px;
       padding: $space-double 0;
-    }
-
-    &__website {
-      font-size: 16px;
-      display: block;
-    }
-
-    .u-underline {
-      display: contents;
-      line-height: 1;
-
-      span {
-        line-height: 0.7;
-
-        @include media('>small') {
-          line-height: 1.2;
-        }
-      }
-
-      span::before {
-        display: none;
-      }
     }
   }
 }
@@ -330,6 +406,17 @@
   width: 100%;
   max-width: $xsmall;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(50vh - 85px);
+    margin: auto;
+  }
 }
 
 /**
@@ -348,8 +435,13 @@
     width: 100px;
     height: auto;
   }
+
+  &__text {
+    fill: $c-white;
+  }
 }
 
+.o-buttons + .o-branding,
 button + .o-branding {
   margin-top: $space;
 
@@ -398,6 +490,7 @@ button + .o-branding {
   line-height: 18px;
   font-size: $font-size-s;
   letter-spacing: 2px;
+  font-weight: bold;
 }
 
 /**
@@ -419,13 +512,13 @@ button + .o-branding {
   opacity: 0;
 
   &.is-inactive {
-    -webkit-animation: slideOutDown 0.5s $transition-effect backwards;
-    animation: slideOutDown 0.5s $transition-effect backwards;
+    -webkit-animation: slideInUpAlt 0.5s $transition-effect backwards;
+    animation: slideInUpAlt 0.5s $transition-effect backwards;
   }
 
   &.is-active {
-    -webkit-animation: slideInUp 0.5s $transition-effect forwards;
-    animation: slideInUp 0.5s $transition-effect forwards;
+    -webkit-animation: slideInUpAlt 1s $transition-effect forwards;
+    animation: slideInUpAlt 1s $transition-effect forwards;
     z-index: 999;
   }
 

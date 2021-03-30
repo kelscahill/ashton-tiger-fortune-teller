@@ -13,12 +13,12 @@
           <div class="c-panel__content">
             <div class="c-panel__content-body animate__animated animate__fadeIn animate__slower">
               <h1 class="o-heading--m">
-                What does a future at Clemson hold for you?<br />
-                <span class="u-font--secondary">You’re just five questions away from finding out.</span>
+                <span>What does a future at<br/>Clemson hold for you?</span>
+                <span>You’re just five questions<br />away from finding out.</span>
               </h1>
             </div>
             <footer class="c-panel__content-footer">
-              <button v-on:click="isHidden = false" class="o-button--primary animate__animated animate__fade-in-up animate__delay-1s">Look into the crystal ball!</button>
+              <button role="button" v-on:click="isHidden = false" class="o-button animate__animated animate__fade-in-up animate__delay-1s">Look into the crystal ball!</button>
               <Branding />
             </footer>
           </div>
@@ -27,6 +27,7 @@
         <article
           v-if="!isHidden && resolutionIndex < quiz.resolutions.length"
           class="c-panel c-panel--resolutions"
+          :id="'c-panel--' + resolutionIndex"
           :class="{'is-revised':isRevised}"
         >
           <header class="c-panel__hero">
@@ -38,9 +39,9 @@
               <h2 class="o-heading--xl" v-if="!isRevised">
                 <span class="o-statement animate__animated animate__fadeIn" v-html="quiz.resolutions[resolutionIndex].statement + '...'"></span>
               </h2>
-              <h2 class="o-heading--xl" v-if="isRevised">
+              <h2 class="o-heading--xl u-animation__delay" v-if="isRevised">
                 <span class="o-statement animate__animated animate__fadeIn" v-html="quiz.resolutions[resolutionIndex].statement + ' '"></span>
-                <span class="o-habit" v-html="results.value[resolutionIndex]"></span>
+                <span class="o-statement-value animate__animated animate__fade-in-up" v-html="results.value[resolutionIndex]"></span>
               </h2>
             </div>
           </header>
@@ -48,11 +49,11 @@
             <div class="c-panel__content-body">
               <div class="c-panel__options u-spacing--half u-animation__delay" v-if="!isRevised">
                 <button
+                  role="button"
                   class="o-button--secondary animate__animated animate__fadeInUp"
                   v-bind:key="revision.id"
                   v-for="(revision, index) in quiz.resolutions[resolutionIndex].revisions"
                   v-on:click="revise(index, resolutionIndex)"
-                  role="button"
                   :id="'o-revision--' + resolutionIndex + '-' + index"
                   :data-button="revision.button"
                   :data-value="revision.value"
@@ -67,10 +68,12 @@
             </div>
             <footer class="c-panel__content-footer">
               <button
+                role="button"
                 class="o-button--secondary animate__animated animate__fadeInUp animate__delay-1s"
                 v-if="isRevised"
                 v-on:click="next"
               >{{ quiz.resolutions[resolutionIndex].button_text }}</button>
+              <Branding />
             </footer>
           </div>
         </article>
@@ -80,17 +83,20 @@
           class="c-panel c-panel--complete"
         >
           <header class="c-panel__hero">
-            <h2 class="o-heading--xl animate__animated animate__fade-in-up">Your future<br/>looks bright.</h2>
-            <Scribble />
+            <h2 class="o-heading--xl animate__animated animate__fade-in-up">
+              <span>Just a moment!</span>
+              <span>These things<br />take time.</span>
+            </h2>
           </header>
           <div class="c-panel__content">
             <div class="c-panel__content-body animate__animated animate__fadeIn">
               <h3 class="o-heading--m">
-                Way to take things from bad to good! We're making your revisions now.<br/><br/>In the meantime, Team Ashton would like to wish you a happier, healthier year ahead.
+                While we're here, let's live in the now and acknowledge how wonderful it is to have you as a Clemson tiger.
               </h3>
             </div>
             <footer class="c-panel__content-footer">
-              <button class="o-button--tertiary animate__animated animate__fade-in-up" v-on:click="resultIsHidden = !resultIsHidden">See your masterpiece</button>
+              <button role="button" class="o-button animate__animated animate__fade-in-up animate__delay-1s" v-on:click="resultIsHidden = !resultIsHidden">Look into the crystal ball!</button>
+              <Branding />
             </footer>
           </div>
         </article>
@@ -108,13 +114,13 @@
           <div class="c-panel__content">
             <footer class="c-panel__content-footer">
               <div id="social-share" class="c-social-share">
-                <a target="_blank" :href="'https://facebook.com/sharer/sharer.php?u=' + pageUrl">
+                <a target="_blank" rel="noopener noreferrer" :href="'https://facebook.com/sharer/sharer.php?u=' + pageUrl">
                   <span class="o-icon"><img src="./assets/icon-facebook.png" alt="Facebook" /></span>Facebook
                 </a>
-                <a target="_blank" :href="'https://twitter.com/intent/tweet/?text=' + pageTitle + ' @ashtondesignllc&amp;url=' + pageUrl">
+                <a target="_blank" rel="noopener noreferrer" :href="'https://twitter.com/intent/tweet/?text=' + pageTitle + ' @ClemsonUniv&amp;url=' + pageUrl">
                   <span class="o-icon"><img src="./assets/icon-twitter.png" alt="Twitter" /></span>Twitter
                 </a>
-                <a target="_blank" :href="'https://www.addtoany.com/add_to/sms?linkurl=' + pageUrl + '&linkname=' + pageTitle">
+                <a target="_blank" rel="noopener noreferrer" :href="'https://www.addtoany.com/add_to/sms?linkurl=' + pageUrl + '&linkname=' + pageTitle">
                   <span class="o-icon"><img src="./assets/icon-sms.png" alt="Message" /></span>Message
                 </a>
                 <a v-on:click="screenshot()" class="o-button__screenshot">
@@ -122,7 +128,10 @@
                   <font>Instagram<br /><span class="o-small">(Download Your Results)</span></font>
                 </a>
               </div>
-              <button class="o-button animate__animated animate__fade-in-up" v-on:click="addClass()">Share with your friends</button>
+              <div class="o-buttons u-animation__delay">
+                <button role="button" class="o-button--secondary animate__animated animate__fade-in-up u-space--bottom" v-on:click="reload()">I see it, yes!</button>
+                <button role="button" class="o-button animate__animated animate__fade-in-up" v-on:click="addClass()">Look into the crystal ball!</button>
+              </div>
               <Branding />
             </footer>
           </div>
@@ -144,7 +153,7 @@ var quiz = {
         {
           id: 0,
           button: "Get to class early",
-          value: "get to class early",
+          value: "get to class early.",
           options: [
             "early-bird",
             "bright-and-early",
@@ -188,7 +197,6 @@ var quiz = {
 
 import Logo from './components/Logo.vue'
 import Branding from './components/Branding.vue'
-import Scribble from './components/Scribble.vue'
 import ResultsCard from './components/ResultsCard.vue'
 import html2canvas from 'html2canvas'
 import { saveAs } from 'file-saver'
@@ -198,7 +206,6 @@ export default {
   components: {
     Logo,
     Branding,
-    Scribble,
     ResultsCard,
   },
   data() {
@@ -208,8 +215,8 @@ export default {
       resultIsHidden: true,
       isHidden: true,
       isRevised: false,
-      pageUrl: 'https://ashton-design.com/2020Revised/',
-      pageTitle: "Revise your 2020!",
+      pageUrl: 'http://tiger-fortune-teller.test/',
+      pageTitle: "Tiger Fortune Teller",
       results: {
         button: [],
         value: [],
@@ -237,6 +244,7 @@ export default {
     revise(index, resolutionIndex) {
       var id = resolutionIndex + '-' + index;
       document.getElementById("o-revision--" + id).classList.add('is-active');
+      document.getElementById("c-panel--" + resolutionIndex).classList.add('is-active');
       setTimeout(() => {
         this.selectedIndex = index;
         this.isRevised = true;
@@ -244,7 +252,7 @@ export default {
         this.results.value[resolutionIndex] = document.getElementById("o-revision--" + id).dataset.value;
         this.results.gif[resolutionIndex] = document.getElementById("o-revision--" + id).dataset.gif;
         this.results.random[resolutionIndex] = document.getElementById("o-revision--" + id).dataset.random;
-      }, 300)
+      }, 1000)
     },
     screenshot() {
       var cardSquare = document.getElementById("card-square");
@@ -255,9 +263,12 @@ export default {
         scrollY: -window.scrollY
       }).then(function(canvas) {
         canvas.toBlob(function(blob) {
-          saveAs(blob, "2020Revised.png");
+          saveAs(blob, "Tiger-Fortune-Teller.png");
         });
       });
+    },
+    reload() {
+      location.reload();
     },
   }
 }

@@ -14,7 +14,7 @@ h6 {
 @mixin o-heading--xl {
   font-family: $font-primary;
   font-size: $font-size-xl;
-  font-weight: 600;
+  font-weight: bold;
   font-style: normal;
   letter-spacing: normal;
   line-height: 1.1;
@@ -40,9 +40,9 @@ h6 {
 @mixin o-heading--m {
   font-family: $font-primary;
   font-size: $font-size-m;
-  font-weight: 600;
+  font-weight: bold;
   font-style: normal;
-  letter-spacing: normal;
+  letter-spacing: 0.02em;
   line-height: 1.2;
 }
 

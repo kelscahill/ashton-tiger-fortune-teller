@@ -23,7 +23,6 @@
     $MODIFIERS
 \* ------------------------------------ */
 @import "modifier.spacing";
-@import "modifier.colors";
 @import "modifier.animations";
 @import "modifier.fonts";
 
@@ -32,6 +31,11 @@
 \* ------------------------------------ */
 @import "objects.headings";
 @import "objects.buttons";
+
+/* ------------------------------------ *\
+    $VENDOR
+\* ------------------------------------ */
+@import "vendor.animate.scss";
 
 /* ------------------------------------ *\
     $COMPONENTS

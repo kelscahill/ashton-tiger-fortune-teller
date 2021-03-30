@@ -1,4 +1,4 @@
-@mixin o-button($bg-color: $c-orange, $color: $c-purple--light, $bg-color-hover: darken($c-orange, 5%), $color-hover: $c-purple--light) {
+@mixin o-button($bg-color: $c-orange, $color: $c-purple--dark, $bg-color-hover: darken($c-orange, 5%), $color-hover: $c-purple--dark) {
   @include o-heading--m;
 
   border: 0;
@@ -37,7 +37,7 @@
 }
 
 @mixin o-button--secondary {
-  @include o-button(transparent, $c-purple--light, $c-orange, $c-purple--light);
+  @include o-button(transparent, $c-purple--light, $c-orange, $c-purple--dark);
 
   border: 1px solid $c-purple--light;
 

@@ -13,3 +13,7 @@ $sides: ("": "", --top: "-top", --bottom: "-bottom", --left: "-left", --right: "
     }
   }
 }
+
+.u-space--bottom {
+  margin-bottom: $space;
+}
