@@ -18,30 +18,30 @@
               </h1>
             </div>
             <footer class="c-panel__content-footer">
-              <button role="button" v-on:click="isHidden = false" class="o-button animate__animated animate__fade-in-up animate__delay-1s">Look into the crystal ball!</button>
+              <button role="button" v-on:click="isHidden = false" class="o-button animate__animated animate__fadeInUp animate__delay-1s">Look into the crystal ball!</button>
               <Branding />
             </footer>
           </div>
         </article>
 
         <article
-          v-if="!isHidden && resolutionIndex < quiz.resolutions.length"
-          class="c-panel c-panel--resolutions"
-          :id="'c-panel--' + resolutionIndex"
+          v-if="!isHidden && questionIndex < quiz.questions.length"
+          class="c-panel c-panel--questions"
+          :id="'c-panel--' + questionIndex"
           :class="{'is-revised':isRevised}"
         >
           <header class="c-panel__hero">
             <div class="o-progress-bar">
-              <progress :value="(resolutionIndex + 1) * 20" max="100"></progress>
+              <progress :value="(questionIndex + 1) * 20" max="100"></progress>
             </div>
             <div class="c-panel__hero-heading">
-              <span class="o-progress-counter">{{ resolutionIndex + 1 }}/{{ quiz.resolutions.length }}</span>
+              <span class="o-progress-counter">{{ questionIndex + 1 }}/{{ quiz.questions.length }}</span>
               <h2 class="o-heading--xl" v-if="!isRevised">
-                <span class="o-statement animate__animated animate__fadeIn" v-html="quiz.resolutions[resolutionIndex].statement + '...'"></span>
+                <span class="o-statement animate__animated animate__fadeIn" v-html="quiz.questions[questionIndex].statement + '...'"></span>
               </h2>
               <h2 class="o-heading--xl u-animation__delay" v-if="isRevised">
-                <span class="o-statement animate__animated animate__fadeIn" v-html="quiz.resolutions[resolutionIndex].statement + ' '"></span>
-                <span class="o-statement-value animate__animated animate__fade-in-up" v-html="results.value[resolutionIndex]"></span>
+                <span class="o-statement animate__animated animate__fadeIn" v-html="quiz.questions[questionIndex].statement + ' '"></span>
+                <span class="o-statement-value animate__animated animate__fadeInUp" v-html="results.value[questionIndex]"></span>
               </h2>
             </div>
           </header>
@@ -52,9 +52,9 @@
                   role="button"
                   class="o-button--secondary animate__animated animate__fadeInUp"
                   v-bind:key="revision.id"
-                  v-for="(revision, index) in quiz.resolutions[resolutionIndex].revisions"
-                  v-on:click="revise(index, resolutionIndex)"
-                  :id="'o-revision--' + resolutionIndex + '-' + index"
+                  v-for="(revision, index) in quiz.questions[questionIndex].revisions"
+                  v-on:click="revise(index, questionIndex)"
+                  :id="'o-revision--' + questionIndex + '-' + index"
                   :data-button="revision.button"
                   :data-value="revision.value"
                   :data-gif="revision.gif"
@@ -63,7 +63,7 @@
                 ></button>
               </div>
               <div class="c-panel__gif u-spacing animate__animated animate__fadeIn" v-if="isRevised">
-                <img :src="require('./assets/gifs/' + resolutionIndex + '/' + selectedIndex + '.gif')" alt="Gif" />
+                <img :src="require('./assets/gifs/' + questionIndex + '/' + selectedIndex + '.gif')" alt="Gif" />
               </div>
             </div>
             <footer class="c-panel__content-footer">
@@ -72,18 +72,18 @@
                 class="o-button--secondary animate__animated animate__fadeInUp animate__delay-1s"
                 v-if="isRevised"
                 v-on:click="next"
-              >{{ quiz.resolutions[resolutionIndex].button_text }}</button>
+              >{{ quiz.questions[questionIndex].button_text }}</button>
               <Branding />
             </footer>
           </div>
         </article>
 
         <article
-          v-if="resolutionIndex >= quiz.resolutions.length && resultIsHidden"
+          v-if="questionIndex >= quiz.questions.length && resultIsHidden"
           class="c-panel c-panel--complete"
         >
           <header class="c-panel__hero">
-            <h2 class="o-heading--xl animate__animated animate__fade-in-up">
+            <h2 class="o-heading--xl animate__animated animate__fadeInUp">
               <span>Just a moment!</span>
               <span>These things<br />take time.</span>
             </h2>
@@ -91,18 +91,18 @@
           <div class="c-panel__content">
             <div class="c-panel__content-body animate__animated animate__fadeIn">
               <h3 class="o-heading--m">
-                While we're here, let's live in the now and acknowledge how wonderful it is to have you as a Clemson tiger.
+                While we’re here, let’s live in the now and acknowledge how wonderful it is to have you as a Clemson tiger.
               </h3>
             </div>
             <footer class="c-panel__content-footer">
-              <button role="button" class="o-button animate__animated animate__fade-in-up animate__delay-1s" v-on:click="resultIsHidden = !resultIsHidden">Look into the crystal ball!</button>
+              <button role="button" class="o-button animate__animated animate__fadeInUp animate__delay-1s" v-on:click="resultIsHidden = !resultIsHidden">Okay, I'm ready!</button>
               <Branding />
             </footer>
           </div>
         </article>
 
         <article
-          v-if="resolutionIndex >= quiz.resolutions.length && !resultIsHidden"
+          v-if="questionIndex >= quiz.questions.length && !resultIsHidden"
           class="c-panel c-panel--results"
         >
           <header class="c-panel__hero" v-on:click="removeClass()">
@@ -129,8 +129,8 @@
                 </a>
               </div>
               <div class="o-buttons u-animation__delay">
-                <button role="button" class="o-button--secondary animate__animated animate__fade-in-up u-space--bottom" v-on:click="reload()">I see it, yes!</button>
-                <button role="button" class="o-button animate__animated animate__fade-in-up" v-on:click="addClass()">Look into the crystal ball!</button>
+                <button role="button" class="o-button--secondary animate__animated animate__fadeInUp u-space--bottom" v-on:click="reload()">Tell my future again</button>
+                <button role="button" class="o-button animate__animated animate__fadeInUp" v-on:click="addClass()">Share with your friends</button>
               </div>
               <Branding />
             </footer>
@@ -144,7 +144,7 @@
 
 <script>
 var quiz = {
-  resolutions: [
+  questions: [
     {
       id: 0,
       statement: "On the first day of school I’d like to",
@@ -163,7 +163,7 @@ var quiz = {
         {
           id: 1,
           button: "Rep my Clemson t-shirt",
-          value: "rep my Clemson t-shirt",
+          value: "rep my Clemson t-shirt.",
           options: [
             "school-spirit",
             "orange-rocking",
@@ -173,7 +173,7 @@ var quiz = {
         {
           id: 2,
           button: "Sign up for a club team",
-          value: "sign up for a club team",
+          value: "sign up for a club team.",
           options: [
             "dream-team",
             "highly coordinated",
@@ -183,11 +183,184 @@ var quiz = {
         {
           id: 3,
           button: "Grab lunch with a new friend",
-          value: "grab lunch with a new friend",
+          value: "grab lunch with a new friend.",
           options: [
             "socially savvy",
             "in-demand",
             "well liked"
+          ]
+        }
+      ]
+    },
+    {
+      id: 1,
+      statement: "Every night before bed I plan to",
+      button_text: "Outlook good!",
+      revisions: [
+        {
+          id: 0,
+          button: "Finish my homework",
+          value: "finish my homework.",
+          options: [
+            "earn extra credit"
+          ]
+        },
+        {
+          id: 1,
+          button: "Hang with my roommates",
+          value: "hang with my roommates.",
+          options: [
+            "make many friends",
+          ]
+        },
+        {
+          id: 2,
+          button: "Practice my TikTok moves",
+          value: "practice my TikTok moves.",
+          options: [
+            "become an internet sensation"
+          ]
+        },
+        {
+          id: 3,
+          button: "Meditate",
+          value: "meditate.",
+          options: [
+            "achieve mental bliss"
+          ]
+        }
+      ]
+    },
+    {
+      id: 2,
+      statement: "My favorite shade of orange is",
+      button_text: "Without a doubt!",
+      revisions: [
+        {
+          id: 0,
+          button: "Buffalo wing",
+          value: "buffalo wing.",
+          options: [
+            "orangutans"
+          ]
+        },
+        {
+          id: 1,
+          button: "Spray tan",
+          value: "spray tan.",
+          options: [
+            "spray tans",
+          ]
+        },
+        {
+          id: 2,
+          button: "Cheese puff",
+          value: "cheese puff.",
+          options: [
+            "cheese puffs"
+          ]
+        },
+        {
+          id: 3,
+          button: "Clemson Orange (duh!)",
+          value: "Clemson Orange (duh!)",
+          options: [
+            "Clemson tigers"
+          ]
+        }
+      ]
+    },
+    {
+      id: 3,
+      statement: "I’d like to take a class on",
+      button_text: "Signs point to yes!",
+      revisions: [
+        {
+          id: 0,
+          button: "Food Science",
+          value: "food science.",
+          options: [
+            "growing lettuce",
+            "building burgers",
+            "salsa construction"
+          ]
+        },
+        {
+          id: 1,
+          button: "Robots in Business",
+          value: "robots in business.",
+          options: [
+            "building robots",
+            "employable androids",
+            "money-making machines"
+          ]
+        },
+        {
+          id: 2,
+          button: "Art History",
+          value: "art history.",
+          options: [
+            "visual trivia",
+            "paint splatter",
+            "gallery openings"
+          ]
+        },
+        {
+          id: 3,
+          button: "Scuba Diving",
+          value: "scuba diving.",
+          options: [
+            "finding shipwrecks",
+            "identifying rare fish",
+            "frog kicks"
+          ]
+        }
+      ]
+    },
+    {
+      id: 4,
+      statement: "My first-year goal is to",
+      button_text: "Show me my future!",
+      revisions: [
+        {
+          id: 0,
+          button: "Ace my first exam",
+          value: "ace my first exam.",
+          options: [
+            "be at the head of your class",
+            "have a killer GPA",
+            "make the Dean’s List"
+          ]
+        },
+        {
+          id: 1,
+          button: "Pick a study abroad program",
+          value: "pick a study abroad program.",
+          options: [
+            "travel far and wide",
+            "soon be packing your suitcase",
+            "be off on a grand adventure"
+          ]
+        },
+        {
+          id: 2,
+          button: "Make my mom proud",
+          value: "make my mom proud.",
+          options: [
+            "make your mom beam with pride",
+            "make your mom cry happy tears",
+            "make your mom yell",
+            "“That’s my baby!”"
+          ]
+        },
+        {
+          id: 3,
+          button: "Find lifelong friends",
+          value: "find lifelong friends.",
+          options: [
+            "make lifelong friends",
+            "find your next BFF",
+            "always have friends around you"
           ]
         }
       ]
@@ -211,11 +384,11 @@ export default {
   data() {
     return {
       quiz: quiz,
-      resolutionIndex: 0,
+      questionIndex: 0,
       resultIsHidden: true,
       isHidden: true,
       isRevised: false,
-      pageUrl: 'http://tiger-fortune-teller.test/',
+      pageUrl: 'http://cahillscreative.com/tiger-fortune-teller/',
       pageTitle: "Tiger Fortune Teller",
       results: {
         button: [],
@@ -228,8 +401,8 @@ export default {
   methods: {
     next() {
       setTimeout(() => {
-        if (this.resolutionIndex < this.quiz.resolutions.length) {
-          this.resolutionIndex++;
+        if (this.questionIndex < this.quiz.questions.length) {
+          this.questionIndex++;
         }
         this.isRevised = false;
       }, 300)
@@ -241,17 +414,17 @@ export default {
     addClass() {
       document.getElementById("social-share").classList.add('is-active');
     },
-    revise(index, resolutionIndex) {
-      var id = resolutionIndex + '-' + index;
+    revise(index, questionIndex) {
+      var id = questionIndex + '-' + index;
       document.getElementById("o-revision--" + id).classList.add('is-active');
-      document.getElementById("c-panel--" + resolutionIndex).classList.add('is-active');
+      document.getElementById("c-panel--" + questionIndex).classList.add('is-active');
       setTimeout(() => {
         this.selectedIndex = index;
         this.isRevised = true;
-        this.results.button[resolutionIndex] = document.getElementById("o-revision--" + id).dataset.button;
-        this.results.value[resolutionIndex] = document.getElementById("o-revision--" + id).dataset.value;
-        this.results.gif[resolutionIndex] = document.getElementById("o-revision--" + id).dataset.gif;
-        this.results.random[resolutionIndex] = document.getElementById("o-revision--" + id).dataset.random;
+        this.results.button[questionIndex] = document.getElementById("o-revision--" + id).dataset.button;
+        this.results.value[questionIndex] = document.getElementById("o-revision--" + id).dataset.value;
+        this.results.gif[questionIndex] = document.getElementById("o-revision--" + id).dataset.gif;
+        this.results.random[questionIndex] = document.getElementById("o-revision--" + id).dataset.random;
       }, 1000)
     },
     screenshot() {

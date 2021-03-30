@@ -167,9 +167,9 @@
 }
 
 /**
- * Panel - Resolutions
+ * Panel - questions
  */
-.c-panel--resolutions {
+.c-panel--questions {
   background-color: $c-purple--dark;
 
   &.is-active {
@@ -231,7 +231,6 @@
     font-family: $font-secondary;
     font-weight: 500;
     color: $c-orange;
-    opacity: 0;
   }
 
   &.is-revised {
@@ -386,9 +385,9 @@
     box-shadow: none;
 
     &__logo {
-      width: 150px;
-      max-width: 150px;
-      height: 150px;
+      width: 200px;
+      max-width: 200px;
+      height: 200px;
       display: block;
     }
 
