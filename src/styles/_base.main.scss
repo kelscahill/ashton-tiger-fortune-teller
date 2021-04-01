@@ -30,7 +30,7 @@ a {
     padding: $space;
     height: 100vh;
     background: url("../assets/background.png") center center no-repeat;
-    background-size: 1360px auto;
+    background-size: cover;
 
     &::before {
       content: "";
@@ -41,7 +41,7 @@ a {
       left: 0;
       top: 0;
       z-index: -1;
-      background-color: $c-purple--light;
+      background-color: $c-purple;
       overflow: hidden;
       pointer-events: none;
     }
@@ -51,15 +51,17 @@ a {
 .l-main {
   text-align: center;
   position: relative;
+  width: 100%;
 
-  @include media("height<=small") {
-    width: 100%;
-  }
+  // @include media("height<=small") {
+  //   width: 100%;
+  // }
 
 
   @include media(">small", "height>small") {
     border-radius: 55px;
     border: 15px solid $c-black;
+    width: auto;
 
     &--inner {
       width: 100%;

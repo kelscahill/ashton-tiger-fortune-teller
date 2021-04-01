@@ -66,6 +66,8 @@
 
   &__gif {
     position: relative;
+    display: table;
+    margin: auto;
 
     &::before,
     &::after {
@@ -102,12 +104,11 @@
 
     img {
       z-index: 1;
-      width: 100%;
-      height: auto;
-      max-width: $xsmall;
       overflow: hidden;
       border-radius: 30px;
       border: 2px solid white;
+      max-width: $xsmall;
+      max-height: 280px;
 
       @include media("<=xsmall") {
         max-width: 290px;
@@ -123,6 +124,8 @@
  */
 .c-panel--home {
   .c-panel__hero {
+    justify-content: center;
+    padding-top: $space;
     background: $c-purple--dark url('../assets/texture-dark.png') center center repeat;
   }
 
@@ -180,8 +183,22 @@
   }
 
   &.is-revised {
-    .c-panel__hero::before {
-      display: none;
+    .c-panel__hero {
+      &::before {
+        display: none;
+      }
+
+      &-heading {
+        padding: $space-double $space $space $space;
+      }
+    }
+
+    .c-panel__content {
+      background-color: $c-purple--dark;
+
+      &-body {
+        padding-bottom: $space-double;
+      }
     }
   }
 
@@ -196,7 +213,7 @@
       flex: 1;
       display: flex;
       align-items: flex-start;
-      justify-content: center;
+      justify-content: flex-start;
       flex-direction: column;
       padding: $space-double $space 108px $space;
     }
@@ -225,22 +242,19 @@
     background-color: $c-purple;
     position: relative;
     z-index: 2;
+
+    &-body {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .o-statement-value {
     font-family: $font-secondary;
     font-weight: 500;
     color: $c-orange;
-  }
-
-  &.is-revised {
-    .c-panel__hero-heading {
-      padding: $space-double $space;
-    }
-
-    .c-panel__content {
-      background-color: $c-purple--dark;
-    }
   }
 }
 
@@ -253,11 +267,11 @@
   .c-panel__hero {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     position: relative;
     z-index: 1;
     overflow: hidden;
-    padding-bottom: 108px;
+    padding-bottom: 138px;
 
     h2 {
       text-align: center;
@@ -293,11 +307,15 @@
     }
   }
 
+  .c-panel__content {
+    flex-basis: 40vh;
+  }
+
   .c-panel__content-body {
     flex: 1;
     display: flex;
     align-items: center;
-    padding: 0 $space-double $space $space-double;
+    padding: 0 $space $space $space;
   }
 
   .o-branding {
@@ -344,6 +362,8 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    background: url('../assets/logo.png') center center no-repeat;
+    background-size: 150px 150px;
   }
 
   &__body {
@@ -386,9 +406,8 @@
 
     &__logo {
       width: 200px;
-      max-width: 200px;
       height: 200px;
-      display: block;
+      background-size: 200px 200px;
     }
 
     &__body {
@@ -413,7 +432,7 @@
     width: auto;
     height: auto;
     max-width: 100%;
-    max-height: calc(50vh - 85px);
+    max-height: calc(50vh - 100px);
     margin: auto;
   }
 }

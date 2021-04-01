@@ -37,10 +37,10 @@
             <div class="c-panel__hero-heading">
               <span class="o-progress-counter">{{ questionIndex + 1 }}/{{ quiz.questions.length }}</span>
               <h2 class="o-heading--xl" v-if="!isRevised">
-                <span class="o-statement animate__animated animate__fadeIn" v-html="quiz.questions[questionIndex].statement + '...'"></span>
+                <span class="o-statement animate__animated animate__fadeInUp" v-html="quiz.questions[questionIndex].statement + '...'"></span>
               </h2>
-              <h2 class="o-heading--xl u-animation__delay" v-if="isRevised">
-                <span class="o-statement animate__animated animate__fadeIn" v-html="quiz.questions[questionIndex].statement + ' '"></span>
+              <h2 class="o-heading--xl" v-if="isRevised">
+                <span class="o-statement" v-html="quiz.questions[questionIndex].statement + ' '"></span>
                 <span class="o-statement-value animate__animated animate__fadeInUp" v-html="results.value[questionIndex]"></span>
               </h2>
             </div>
@@ -62,8 +62,8 @@
                   v-html="revision.button"
                 ></button>
               </div>
-              <div class="c-panel__gif u-spacing animate__animated animate__fadeIn" v-if="isRevised">
-                <img :src="require('./assets/gifs/' + questionIndex + '/' + selectedIndex + '.gif')" alt="Gif" />
+              <div class="c-panel__gif" v-if="isRevised">
+                <img class="animate__animated animate__fadeIn" :src="require('./assets/gifs/' + questionIndex + '/' + selectedIndex + '.gif')" alt="Gif" />
               </div>
             </div>
             <footer class="c-panel__content-footer">
@@ -83,7 +83,7 @@
           class="c-panel c-panel--complete"
         >
           <header class="c-panel__hero">
-            <h2 class="o-heading--xl animate__animated animate__fadeInUp">
+            <h2 class="o-heading--xl animate__animated animate__fadeIn">
               <span>Just a moment!</span>
               <span>These things<br />take time.</span>
             </h2>
@@ -129,8 +129,8 @@
                 </a>
               </div>
               <div class="o-buttons u-animation__delay">
-                <button role="button" class="o-button--secondary animate__animated animate__fadeInUp u-space--bottom" v-on:click="reload()">Tell my future again</button>
-                <button role="button" class="o-button animate__animated animate__fadeInUp" v-on:click="addClass()">Share with your friends</button>
+                <button role="button" class="o-button u-space--bottom animate__animated animate__fadeInUp" v-on:click="addClass()">Share with friends</button>
+                <button role="button" class="o-button--secondary animate__animated animate__fadeInUp" v-on:click="reload()">Choose another destiny</button>
               </div>
               <Branding />
             </footer>
