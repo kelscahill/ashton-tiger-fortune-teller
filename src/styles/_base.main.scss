@@ -1,7 +1,7 @@
 html {
-  height: -moz-available;
-  height: -webkit-fill-available;
-  height: fill-available;
+  // height: -moz-available;
+  // height: -webkit-fill-available;
+  height: stretch;
 }
 
 body {
@@ -53,11 +53,6 @@ a {
   position: relative;
   width: 100%;
 
-  // @include media("height<=small") {
-  //   width: 100%;
-  // }
-
-
   @include media(">small", "height>small") {
     border-radius: 55px;
     border: 15px solid $c-black;
@@ -82,6 +77,8 @@ a {
         background-color: $c-purple--light;
         box-shadow: inset 0 0 5px transparent;
         border-radius: 10px;
+        margin-top: $space;
+        margin-bottom: $space;
       }
 
       /* Handle */

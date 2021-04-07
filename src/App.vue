@@ -18,7 +18,7 @@
               </h1>
             </div>
             <footer class="c-panel__content-footer">
-              <button role="button" v-on:click="isHidden = false" class="o-button animate__animated animate__fadeInUp animate__delay-1s">Look into the crystal ball!</button>
+              <button role="button" v-on:click="isHidden = false" class="o-button animate__animated animate__fadeInUp animate__delay-1s">Look into the crystal ball</button>
               <Branding />
             </footer>
           </div>
@@ -148,7 +148,7 @@ var quiz = {
     {
       id: 0,
       statement: "On the first day of school I’d like to",
-      button_text: "I see it, yes!",
+      button_text: "I see it, yes",
       revisions: [
         {
           id: 0,
@@ -187,7 +187,7 @@ var quiz = {
           options: [
             "socially savvy",
             "in-demand",
-            "well liked"
+            "well-liked"
           ]
         }
       ]
@@ -195,7 +195,7 @@ var quiz = {
     {
       id: 1,
       statement: "Every night before bed I plan to",
-      button_text: "Outlook good!",
+      button_text: "Outlook good",
       revisions: [
         {
           id: 0,
@@ -234,7 +234,7 @@ var quiz = {
     {
       id: 2,
       statement: "My favorite shade of orange is",
-      button_text: "Without a doubt!",
+      button_text: "Without a doubt",
       revisions: [
         {
           id: 0,
@@ -273,7 +273,7 @@ var quiz = {
     {
       id: 3,
       statement: "I’d like to take a class on",
-      button_text: "Signs point to yes!",
+      button_text: "Signs point to yes",
       revisions: [
         {
           id: 0,
@@ -320,7 +320,7 @@ var quiz = {
     {
       id: 4,
       statement: "My first-year goal is to",
-      button_text: "Show me my future!",
+      button_text: "Show me my future",
       revisions: [
         {
           id: 0,
@@ -388,7 +388,7 @@ export default {
       resultIsHidden: true,
       isHidden: true,
       isRevised: false,
-      pageUrl: 'http://cahillscreative.com/tiger-fortune-teller/',
+      pageUrl: 'https://cahillscreative.com/fortune-teller/',
       pageTitle: "Tiger Fortune Teller",
       results: {
         button: [],
@@ -429,6 +429,7 @@ export default {
     },
     screenshot() {
       var cardSquare = document.getElementById("card-square");
+      window.scrollTo(0,0);
       html2canvas(cardSquare, {
         width: 600,
         height: 600,

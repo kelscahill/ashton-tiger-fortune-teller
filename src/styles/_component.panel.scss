@@ -7,9 +7,9 @@
   justify-content: space-between;
   background-color: $c-purple--dark;
   min-height: 100vh;
-  min-height: -moz-available;
-  min-height: -webkit-fill-available;
-  min-height: fill-available;
+  // min-height: -moz-available;
+  // min-height: -webkit-fill-available;
+  min-height: stretch;
 
   @include media(">small", "height>small") {
     height: auto;
@@ -49,7 +49,11 @@
     flex-basis: 50vh;
     padding: $space;
 
-    @include media("height>device-height") {
+    @include media(">small", "height<small") {
+      flex-basis: auto;
+    }
+
+    @include media(">small", "height>device-height") {
       flex-basis: calc((#{$device-height} - #{$space-double}) / 2);
     }
 
@@ -108,12 +112,21 @@
       border-radius: 30px;
       border: 2px solid white;
       max-width: $xsmall;
-      max-height: 280px;
+      max-height: calc(50vh - 200px);
+      height: auto;
 
       @include media("<=xsmall") {
         max-width: 290px;
         max-height: 200px;
         width: auto;
+      }
+
+      @include media(">small", "height<small") {
+        max-height: 280px;
+      }
+
+      @include media(">small", "height>892") {
+        max-height: calc((#{$device-height} / 2) - 175px);
       }
     }
   }
@@ -134,6 +147,10 @@
     background-size: 150px 150px;
     padding: $space;
     flex-basis: 40vh;
+
+    @include media(">small", "height<small") {
+      flex-basis: auto;
+    }
 
     &-body {
       display: flex;
@@ -309,6 +326,10 @@
 
   .c-panel__content {
     flex-basis: 40vh;
+
+    @include media(">small", "height<small") {
+      flex-basis: auto;
+    }
   }
 
   .c-panel__content-body {
@@ -528,6 +549,11 @@ button + .o-branding {
   overflow: hidden;
   transform: translateY(1000px);
   opacity: 0;
+
+  @include media(">small", "height>small") {
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+  }
 
   &.is-inactive {
     -webkit-animation: slideInUpAlt 0.5s $transition-effect backwards;

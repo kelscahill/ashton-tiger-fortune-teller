@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath:process.env.NODE_ENV === 'production'? 'http://cahillscreative.com/tiger-fortune-teller/' : '/'
+  publicPath:process.env.NODE_ENV === 'production'? 'https://cahillscreative.com/fortune-teller/' : '/'
 };
