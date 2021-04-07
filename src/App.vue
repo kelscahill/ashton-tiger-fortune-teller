@@ -162,8 +162,8 @@ var quiz = {
         },
         {
           id: 1,
-          button: "Rep my Clemson t-shirt",
-          value: "rep my Clemson t-shirt.",
+          button: "Rock my Clemson t-shirt",
+          value: "rock my Clemson t-shirt.",
           options: [
             "school-spirit",
             "orange-rocking",

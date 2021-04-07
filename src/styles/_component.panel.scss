@@ -49,7 +49,7 @@
     flex-basis: 50vh;
     padding: $space;
 
-    @include media(">small", "height<small") {
+    @include media(">small", "height<medium") {
       flex-basis: auto;
     }
 
@@ -121,7 +121,7 @@
         width: auto;
       }
 
-      @include media(">small", "height<small") {
+      @include media(">small", "height<medium") {
         max-height: 280px;
       }
 
@@ -148,7 +148,7 @@
     padding: $space;
     flex-basis: 40vh;
 
-    @include media(">small", "height<small") {
+    @include media(">small", "height<medium") {
       flex-basis: auto;
     }
 
@@ -327,7 +327,7 @@
   .c-panel__content {
     flex-basis: 40vh;
 
-    @include media(">small", "height<small") {
+    @include media(">small", "height<medium") {
       flex-basis: auto;
     }
   }

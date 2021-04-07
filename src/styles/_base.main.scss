@@ -66,6 +66,10 @@ a {
       background-color: $c-black;
       border-radius: 40px;
       overflow-y: auto;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
 
       /* width */
       &::-webkit-scrollbar {
