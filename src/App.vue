@@ -91,7 +91,7 @@
           <div class="c-panel__content">
             <div class="c-panel__content-body animate__animated animate__fadeIn">
               <h3 class="o-heading--m">
-                While we’re here, let’s live in the now and acknowledge how wonderful it is to have you as a Clemson tiger.
+                While we’re here, let’s live in the now and acknowledge how wonderful it is to have you as a Clemson Tiger.
               </h3>
             </div>
             <footer class="c-panel__content-footer">
@@ -147,7 +147,7 @@ var quiz = {
   questions: [
     {
       id: 0,
-      statement: "On the first day of school I’d like to",
+      statement: "On the first day of school, I’d like to",
       button_text: "I see it, yes",
       revisions: [
         {
@@ -172,8 +172,8 @@ var quiz = {
         },
         {
           id: 2,
-          button: "Sign up for a club team",
-          value: "sign up for a club team.",
+          button: "Sign up for a club",
+          value: "sign up for a club.",
           options: [
             "dream-team",
             "highly coordinated",
@@ -194,7 +194,7 @@ var quiz = {
     },
     {
       id: 1,
-      statement: "Every night before bed I plan to",
+      statement: "Every night before bed, I plan to",
       button_text: "Outlook good",
       revisions: [
         {
@@ -241,7 +241,7 @@ var quiz = {
           button: "Buffalo wing",
           value: "buffalo wing.",
           options: [
-            "orangutans"
+            "buffalo wings"
           ]
         },
         {
@@ -265,7 +265,7 @@ var quiz = {
           button: "Clemson Orange (duh!)",
           value: "Clemson Orange (duh!)",
           options: [
-            "Clemson tigers"
+            "Clemson Tigers"
           ]
         }
       ]
