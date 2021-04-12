@@ -112,7 +112,7 @@
       border-radius: 30px;
       border: 2px solid white;
       max-width: $xsmall;
-      max-height: calc(50vh - 200px);
+      max-height: calc(60vh - 200px);
       height: auto;
 
       @include media("<=xsmall") {
@@ -212,6 +212,7 @@
 
     .c-panel__content {
       background-color: $c-purple--dark;
+      flex-basis: auto;
 
       &-body {
         padding-bottom: $space-double;

@@ -349,8 +349,7 @@ var quiz = {
           options: [
             "make your mom beam with pride",
             "make your mom cry happy tears",
-            "make your mom yell",
-            "“That’s my baby!”"
+            "make your mom yell “That’s my baby!”"
           ]
         },
         {
@@ -388,8 +387,8 @@ export default {
       resultIsHidden: true,
       isHidden: true,
       isRevised: false,
-      pageUrl: 'https://cahillscreative.com/fortune-teller/',
-      pageTitle: "Tiger Fortune Teller",
+      pageUrl: 'http://www.clemson.edu/fortune-teller/',
+      pageTitle: "Headed to Clemson? Try the Tiger Fortune Teller and discover your freshman year destiny.",
       results: {
         button: [],
         value: [],
